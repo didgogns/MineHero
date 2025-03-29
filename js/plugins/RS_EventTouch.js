@@ -59,7 +59,17 @@
     const parameters = PluginManager.parameters('RS_EventTouch');
     const regex = eval(parameters['Event Regex']) || /Event[ ]*Click/gi;
 
+    // 대화 중인지 확인하는 함수
+    const isDialogActive = () => {
+        return $gameMessage.isBusy();
+    };
+
     Game_Map.prototype.executeTouchEvent = function () {
+        // 대화가 진행 중일 때 클릭 판정이 일어나지 않도록 함
+        if (isDialogActive()) {
+            return false;
+        }
+
         if (TouchInput.isTriggered()) {
             const x = $gameMap.canvasToMapX(TouchInput._x);
             const y = $gameMap.canvasToMapY(TouchInput._y);

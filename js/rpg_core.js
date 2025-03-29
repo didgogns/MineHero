@@ -1869,7 +1869,7 @@ Graphics.tickEnd = function() {
  * @param {Stage} stage The stage object to be rendered
  */
 Graphics.render = function(stage) {
-    if (this._skipCount === 0) {
+    if (this._skipCount <= 0) {
         var startTime = Date.now();
         if (stage) {
             this._renderer.render(stage);
@@ -3014,8 +3014,8 @@ Input.keyMapper = {
     39: 'right',    // right arrow
     40: 'down',     // down arrow
     45: 'escape',   // insert
-    81: 'pageup',   // Q
-    87: 'pagedown', // W
+    // 81: 'pageup',   // Q
+    // 87: 'pagedown', // W
     88: 'escape',   // X
     90: 'ok',       // Z
     96: 'escape',   // numpad 0
@@ -3023,7 +3023,13 @@ Input.keyMapper = {
     100: 'left',    // numpad 4
     102: 'right',   // numpad 6
     104: 'up',      // numpad 8
-    120: 'debug'    // F9
+    120: 'debug',   // F9
+    87: 'up',       // W
+    65: 'left',     // A
+    83: 'down',     // S
+    68: 'right',    // D
+    69: 'ok',       // E
+    81: 'escape'    // Q
 };
 
 /**
